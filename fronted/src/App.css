@@ -1,0 +1,28 @@
+body::-webkit-scrollbar{
+    display: none;
+}
+.lp-btn-primary {
+    background-color: var(--primary-color);
+    color: #fff; /* This should make the text white */
+    border-color: var(--primary-color);
+}
+.lp-main-nav.lp-LandingNav a:not(.lp-btn),
+.lp-main-nav.lp-LandingNav .lp-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 1rem;
+    margin: 0;
+    box-sizing: border-box;
+}
+/* Ensure button text color is white in mobile menu */
+@media (max-width: 992px) {
+    .lp-main-nav.lp-LandingNav.active .lp-btn-primary {
+        color: #fff; /* Explicitly set white text for primary buttons in active mobile nav */
+    }
+
+    /* If you have secondary buttons in the nav and they also lose color, add: */
+    .lp-main-nav.lp-LandingNav.active .lp-btn-secondary {
+        color: #fff; /* Assuming you want white text for secondary buttons too */
+    }
+}

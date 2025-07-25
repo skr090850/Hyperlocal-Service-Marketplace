@@ -1,0 +1,86 @@
+# Node.js / npm / yarn
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json # Optional: Some teams commit this, others don't. If you use npm, it's generally recommended to commit.
+# yarn.lock # If using Yarn, it's generally recommended to commit this.
+
+# Environment variables
+# IMPORTANT: Never commit your .env files containing sensitive credentials!
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local
+
+# Log files
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Operating System generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE / Editor specific files
+.vscode/
+!.vscode/settings.json # Optional: Sometimes useful to share editor settings
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw? # Vim swap files
+
+# Build output / Distribution folders (if applicable, e.g., for TypeScript builds)
+dist/
+build/
+out/
+.parcel-cache/
+.next/ # If using Next.js for any part, though less common for pure backend
+
+# Test coverage reports
+coverage/
+.nyc_output/
+
+# MongoDB specific (if running local instances and data files are within project - RARE)
+# Usually, MongoDB data files are managed outside the project directory.
+# If you have local MongoDB data files in your project (not recommended for repo):
+# data/db/ # Example path, adjust if necessary
+# mongod.lock
+
+# Temporary files
+*.tmp
+*.temp
+*.patch
+*.rej
+*~
+
+# Optional: Compiled files (if using a language that compiles to JS, like TypeScript, but not the source .ts files)
+# *.js.map # Source maps (can be large, sometimes excluded)
+# *.js # If TypeScript .ts files are your source of truth and you compile to .js in the same dir (not common for backend)
+
+# dotenv vault file
+.env.vault
+
+# Debugging files
+*.pid
+*.seed
+*.pid.lock
+
+# Other common ignores
+.eslintcache
+.prettierignore
+.stylelintcache

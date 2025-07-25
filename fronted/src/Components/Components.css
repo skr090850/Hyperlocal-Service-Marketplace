@@ -1,0 +1,674 @@
+/* SignupPage.css */
+
+/* --- Global Styles & Variables (can be imported from a common file) --- */
+:root {
+  --primary-color: #007bff;
+  --primary-color-dark: #0056b3;
+  --secondary-color: #6c757d;
+  --light-color: #f8f9fa;
+  --dark-color: #343a40;
+  --text-color: #212529;
+  --error-color: #dc3545;
+  --success-color: #28a745;
+  --border-radius: 8px;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* --- Basic Page Structure --- */
+.signup-page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--light-color);
+  /* Light background for the whole page */
+  font-family: var(--font-family);
+}
+
+.container {
+  /* Reusable container class */
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* --- Minimal Header --- */
+.minimal-header {
+  background-color: #fff;
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.minimal-header .logo a {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--dark-color);
+  text-decoration: none;
+}
+
+.minimal-header .logo .logo-accent {
+  color: var(--primary-color);
+}
+
+/* --- Main Content Area --- */
+.signup-main-content {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  /* Vertically center the card if content is short */
+  justify-content: center;
+  padding: 3rem 1rem;
+  /* More padding for main content area */
+}
+
+/* --- Signup Form Card --- */
+.signup-form-card {
+  background-color: #fff;
+  padding: 2.5rem;
+  /* Generous padding */
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  width: 100%;
+  max-width: 480px;
+  /* Max width for the form card */
+  text-align: center;
+}
+
+.signup-form-card h2 {
+  font-size: 2rem;
+  color: var(--dark-color);
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.form-subtitle {
+  font-size: 1rem;
+  color: var(--secondary-color);
+  margin-bottom: 2rem;
+}
+
+/* --- Form Elements --- */
+.form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+  /* Align labels and inputs to the left */
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+  font-size: 0.9rem;
+}
+
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-with-icon .icon {
+  position: absolute;
+  left: 12px;
+  color: var(--secondary-color);
+  pointer-events: none;
+  /* So it doesn't interfere with input click */
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="password"] {
+  width: 100%;
+  padding: 0.8rem 1rem 0.8rem 2.5rem;
+  /* Padding to make space for icon */
+  font-size: 1rem;
+  border: 1px solid #ced4da;
+  border-radius: var(--border-radius);
+  box-sizing: border-box;
+  /* Important for width calculation */
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.form-group input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  outline: none;
+}
+
+/* Error and Success States */
+.error-text {
+  color: var(--error-color);
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+.form-group input[aria-invalid="true"] {
+  border-color: var(--error-color);
+}
+
+.form-group input[aria-invalid="true"]:focus {
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+.success-message {
+  background-color: #e6ffed;
+  color: #1f7539;
+  border: 1px solid var(--success-color);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.success-message a {
+  color: #1a5c2e;
+  font-weight: 500;
+}
+
+
+/* --- Buttons --- */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  border: 1px solid transparent;
+  line-height: 1.5;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-color-dark);
+  border-color: var(--primary-color-dark);
+  text-decoration: none;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+  padding: 0.9rem 1.5rem;
+  /* Slightly larger for block button */
+  font-size: 1.05rem;
+}
+
+.btn-block .icon {
+  /* Align icon in button */
+  margin-left: 0.5rem;
+  vertical-align: middle;
+  /* Helps with alignment */
+}
+
+
+/* --- Form Footer Text --- */
+.form-footer-text {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+}
+
+.form-footer-text a {
+  color: var(--primary-color);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.form-footer-text a:hover {
+  text-decoration: underline;
+}
+
+/* --- Minimal Footer --- */
+.minimal-footer {
+  background-color: var(--dark-color);
+  color: var(--light-color);
+  padding: 1.5rem 0;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.minimal-footer p {
+  margin: 0.25rem 0;
+  opacity: 0.8;
+}
+
+.minimal-footer a {
+  color: var(--light-color);
+  text-decoration: none;
+}
+
+.minimal-footer a:hover {
+  text-decoration: underline;
+  opacity: 1;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 576px) {
+  .signup-form-card {
+    padding: 1.5rem;
+    margin: 1rem;
+    /* Add some margin on very small screens */
+  }
+
+  .signup-form-card h2 {
+    font-size: 1.6rem;
+  }
+
+  .form-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* LoginPage.css */
+
+/* --- Global Styles & Variables (can be imported from a common file or copied from SignupPage.css) --- */
+/* :root {
+  --primary-color: #007bff;
+  --primary-color-dark: #0056b3;
+  --secondary-color: #6c757d;
+  --light-color: #f8f9fa;
+  --dark-color: #343a40;
+  --text-color: #212529;
+  --error-color: #dc3545;
+  --success-color: #28a745;
+  --border-radius: 8px;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+} */
+
+/* --- Basic Page Structure --- */
+.login-page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--light-color);
+  font-family: var(--font-family);
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* --- Minimal Header (Same as SignupPage) --- */
+.minimal-header {
+  background-color: #fff;
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.minimal-header .logo a {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--dark-color);
+  text-decoration: none;
+}
+
+.minimal-header .logo .logo-accent {
+  color: var(--primary-color);
+}
+
+/* --- Main Content Area --- */
+.login-main-content {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+}
+
+/* --- Login Form Card --- */
+.login-form-card {
+  background-color: #fff;
+  padding: 2.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  width: 100%;
+  max-width: 450px;
+  /* Slightly smaller or same as signup */
+  text-align: center;
+}
+
+.login-form-card h2 {
+  font-size: 2rem;
+  color: var(--dark-color);
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.form-subtitle {
+  font-size: 1rem;
+  color: var(--secondary-color);
+  margin-bottom: 2rem;
+}
+
+/* --- Form Elements (Largely same as SignupPage) --- */
+.form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+  font-size: 0.9rem;
+}
+
+.label-with-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  /* Adjust if label itself has margin-bottom */
+}
+
+.label-with-link label {
+  margin-bottom: 0;
+  /* Remove default margin if inside this container */
+}
+
+.form-link {
+  font-size: 0.85rem;
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.form-link:hover {
+  text-decoration: underline;
+}
+
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-with-icon .icon {
+  position: absolute;
+  left: 12px;
+  color: var(--secondary-color);
+  pointer-events: none;
+}
+
+.form-group input[type="email"],
+.form-group input[type="password"] {
+  width: 100%;
+  padding: 0.8rem 1rem 0.8rem 2.5rem;
+  font-size: 1rem;
+  border: 1px solid #ced4da;
+  border-radius: var(--border-radius);
+  box-sizing: border-box;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.form-group input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  outline: none;
+}
+
+/* Error and Success States */
+.error-text {
+  color: var(--error-color);
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+.form-group input[aria-invalid="true"] {
+  border-color: var(--error-color);
+}
+
+.form-group input[aria-invalid="true"]:focus {
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+.success-message {
+  /* For general success feedback if not redirecting immediately */
+  background-color: #e6ffed;
+  color: #1f7539;
+  border: 1px solid var(--success-color);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.error-message.global-error-message {
+  /* For general login errors */
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.error-message.global-error-message p {
+  margin: 0;
+}
+
+
+/* --- Buttons (Same as SignupPage) --- */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  border: 1px solid transparent;
+  line-height: 1.5;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-color-dark);
+  border-color: var(--primary-color-dark);
+  text-decoration: none;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+  padding: 0.9rem 1.5rem;
+  font-size: 1.05rem;
+}
+
+.btn-block .icon {
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
+/* --- Form Footer Text (Same as SignupPage) --- */
+.form-footer-text {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+}
+
+.form-footer-text a {
+  color: var(--primary-color);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.form-footer-text a:hover {
+  text-decoration: underline;
+}
+
+/* --- Minimal Footer (Same as SignupPage) --- */
+.minimal-footer {
+  background-color: var(--dark-color);
+  color: var(--light-color);
+  padding: 1.5rem 0;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.minimal-footer p {
+  margin: 0.25rem 0;
+  opacity: 0.8;
+}
+
+.minimal-footer a {
+  color: var(--light-color);
+  text-decoration: none;
+}
+
+.minimal-footer a:hover {
+  text-decoration: underline;
+  opacity: 1;
+}
+
+/* --- Responsive Adjustments (Same as SignupPage) --- */
+@media (max-width: 576px) {
+  .login-form-card {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  .login-form-card h2 {
+    font-size: 1.6rem;
+  }
+
+  .form-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
+}
+
+.btn {
+  background-color: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
+}
+
+
+
+/* LoginPage.css or your main stylesheet */
+
+/* ... other styles ... */
+
+.login-form-card .separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 20px 0;
+  /* Adjust spacing as needed */
+  color: #777;
+  /* Light grey color for the text */
+}
+
+.login-form-card .separator::before,
+.login-form-card .separator::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #ddd;
+  /* Light grey line */
+}
+
+.login-form-card .separator:not(:empty)::before {
+  margin-right: .5em;
+  /* Space between line and text */
+}
+
+.login-form-card .separator:not(:empty)::after {
+  margin-left: .5em;
+  /* Space between text and line */
+}
+
+.btn-google {
+  background-color: #fff;
+  /* Google's preferred white background */
+  color: #444;
+  /* Dark grey text, common for Google buttons */
+  border: 1px solid #ccc;
+  /* Standard border */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  /* Space between logo and text */
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.btn-google:hover {
+  background-color: #9000ff;
+  /* Slight hover effect */
+}
+
+.btn-google svg {
+  /* If GoogleLogo is an SVG */
+  margin-right: 8px;
+  /* Space between logo and text if not using gap */
+}
+
+.btn-block {
+  width: 100%;
+  padding: 10px 15px;
+  /* Adjust padding as needed */
+  font-size: 1rem;
+  /* Adjust font size as needed */
+  margin-bottom: 10px;
+  /* Spacing below button */
+}
+
+/* If you added className="icon-right" to the arrow icon */
+.icon-right {
+  margin-left: 8px;
+}
+
+/* Ensure input-with-icon aligns items */
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-with-icon .icon {
+  position: absolute;
+  left: 10px;
+  /* Adjust as needed */
+  color: #777;
+  /* Or your preferred icon color */
+  pointer-events: none;
+  /* So it doesn't interfere with input clicks */
+}
+
+.input-with-icon input {
+  padding-left: 35px;
+  /* Make space for the icon */
+  width: 100%;
+  /* Ensure input takes full width of its container */
+}

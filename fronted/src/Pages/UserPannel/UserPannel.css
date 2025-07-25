@@ -1,0 +1,3523 @@
+
+
+/* ServiceListingsPage.css */
+
+/* --- Reusable Variables (Consider moving to a global CSS file if not already) --- */
+/* :root {
+  --primary-color: #007bff;
+  --primary-color-dark: #0056b3;
+  --secondary-color: #6c757d;
+  --light-color: #f8f9fa;
+  --dark-color: #343a40;
+  --text-color: #212529;
+  --border-color: #dee2e6;
+  --card-bg: #ffffff;
+  --star-color: #ffc107;
+  --verified-color: #28a745;
+  --border-radius: 8px;
+  --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+} */
+
+/* --- Basic Page Structure --- */
+.service-listings-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--light-color);
+  font-family: var(--font-family);
+}
+
+.container {
+  /* General container */
+  width: 90%;
+  max-width: 1300px;
+  /* Wider for listings page */
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* --- Minimal Header (Copied from Auth pages for consistency, can be global) --- */
+.minimal-header {
+  background-color: #fff;
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.minimal-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.minimal-header .logo a {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--dark-color);
+  text-decoration: none;
+}
+
+.minimal-header .logo .logo-accent {
+  color: var(--primary-color);
+}
+
+.main-nav-listings a {
+  margin-left: 1.5rem;
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.main-nav-listings a:hover {
+  color: var(--primary-color);
+}
+
+/* --- Page Content Area (Sidebar + Main) --- */
+.page-content-area {
+  display: flex;
+  gap: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+/* --- Filters Sidebar --- */
+.filters-sidebar {
+  flex: 0 0 280px;
+  /* Fixed width for sidebar */
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  height: fit-content;
+  /* So it doesn't stretch full page height unnecessarily */
+  position: sticky;
+  top: 100px;
+  /* Adjust based on header height */
+}
+
+.filters-sidebar h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  color: var(--dark-color);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filter-group {
+  margin-bottom: 1.5rem;
+}
+
+.filter-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.filter-group select,
+.filter-group input[type="range"] {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid var(--border-color);
+  border-radius: calc(var(--border-radius) - 2px);
+  font-size: 0.9rem;
+  box-sizing: border-box;
+}
+
+.filter-group input[type="range"] {
+  padding: 0;
+  /* Range inputs don't need padding like select */
+}
+
+.rating-filter-inputs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rating-filter-inputs span {
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+  white-space: nowrap;
+}
+
+.filter-group input[type="checkbox"] {
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+.filter-group input[type="checkbox"]+label {
+  font-weight: normal;
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+  /* Smaller margin for checkbox labels */
+  display: inline;
+  /* Keep label next to checkbox */
+}
+
+
+/* --- Main Listings Content --- */
+.listings-main-content {
+  flex-grow: 1;
+}
+
+.listings-header {
+  margin-bottom: 1.5rem;
+}
+
+.listings-header h2 {
+  font-size: 1.8rem;
+  color: var(--dark-color);
+  margin-bottom: 0.5rem;
+}
+
+.search-and-sort {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  /* Allow wrapping on smaller screens */
+}
+
+.search-bar-listings {
+  display: flex;
+  flex-grow: 1;
+  /* Allow search bar to take available space */
+  max-width: 400px;
+}
+
+.search-bar-listings input {
+  flex-grow: 1;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: calc(var(--border-radius) - 2px) 0 0 calc(var(--border-radius) - 2px);
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.search-bar-listings input:focus {
+  border-color: var(--primary-color);
+}
+
+.search-btn-listings {
+  padding: 0.6rem 0.8rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: 1px solid var(--primary-color);
+  border-radius: 0 calc(var(--border-radius) - 2px) calc(var(--border-radius) - 2px) 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-btn-listings:hover {
+  background-color: var(--primary-color-dark);
+}
+
+
+.sort-options {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sort-options label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--secondary-color);
+}
+
+.sort-options select {
+  padding: 0.6rem;
+  border: 1px solid var(--border-color);
+  border-radius: calc(var(--border-radius) - 2px);
+  font-size: 0.9rem;
+  min-width: 180px;
+  /* Ensure select is not too small */
+}
+
+/* --- Service Providers Grid --- */
+.service-providers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+/* --- Service Provider Card --- */
+.service-provider-card {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.service-provider-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+}
+
+.provider-image {
+  width: 100%;
+  height: 180px;
+  /* Fixed height for images */
+  object-fit: cover;
+  /* Crop image to fit */
+}
+
+.provider-info {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  /* Make info section take remaining space */
+}
+
+.provider-info h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+  color: var(--dark-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.verified-badge {
+  font-size: 0.8rem;
+  color: var(--verified-color);
+  border: 1px solid var(--verified-color);
+  border-radius: 50%;
+  /* Make it circular */
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.5rem;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+
+.provider-category {
+  font-size: 0.85rem;
+  color: var(--primary-color);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.provider-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+  margin-bottom: 0.5rem;
+}
+
+.provider-rating .icon-star {
+  /* Specific styling for star icon if needed */
+  stroke: var(--star-color);
+  /* For outlined stars */
+  fill: var(--star-color);
+  /* For filled stars */
+}
+
+.provider-location {
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+}
+
+.location-icon {
+  margin-right: 0.3rem;
+  color: var(--secondary-color);
+}
+
+.provider-description {
+  font-size: 0.9rem;
+  color: var(--text-color);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+  /* Allow description to take space before tags */
+}
+
+.provider-specialties {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.specialty-tag {
+  background-color: #e9ecef;
+  color: var(--secondary-color);
+  padding: 0.25rem 0.6rem;
+  border-radius: calc(var(--border-radius) - 4px);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  /* Push to bottom */
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.price-indicator {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--dark-color);
+}
+
+.btn {
+  /* Reusable button styles */
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+  border-radius: calc(var(--border-radius) - 2px);
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  border: 1px solid transparent;
+  line-height: 1.5;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-color-dark);
+  border-color: var(--primary-color-dark);
+  text-decoration: none;
+}
+
+.btn-small {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+}
+
+
+/* --- No Results Message --- */
+.no-results {
+  text-align: center;
+  padding: 3rem 1rem;
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.no-results p {
+  font-size: 1.1rem;
+  color: var(--secondary-color);
+}
+
+/* --- Pagination --- */
+.pagination-nav {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.page-item .page-link {
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--border-color);
+  background-color: var(--card-bg);
+  color: var(--primary-color);
+  text-decoration: none;
+  border-radius: calc(var(--border-radius) - 4px);
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.page-item .page-link:hover {
+  background-color: #e9ecef;
+}
+
+.page-item.active .page-link {
+  background-color: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
+}
+
+.page-item:first-child .page-link,
+.page-item:last-child .page-link {
+  font-weight: 500;
+}
+
+
+/* --- Minimal Footer (Copied from Auth pages for consistency, can be global) --- */
+.minimal-footer {
+  background-color: var(--dark-color);
+  color: var(--light-color);
+  padding: 1.5rem 0;
+  text-align: center;
+  font-size: 0.85rem;
+  margin-top: 2rem;
+  /* Ensure space above footer */
+}
+
+.minimal-footer p {
+  margin: 0.25rem 0;
+  opacity: 0.8;
+}
+
+.minimal-footer a {
+  color: var(--light-color);
+  text-decoration: none;
+}
+
+.minimal-footer a:hover {
+  text-decoration: underline;
+  opacity: 1;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+  .page-content-area {
+    flex-direction: column;
+  }
+
+  .filters-sidebar {
+    flex: 0 0 auto;
+    /* Allow sidebar to take its content width */
+    width: 100%;
+    position: static;
+    /* Remove sticky positioning on smaller screens */
+    margin-bottom: 1.5rem;
+  }
+
+  .service-providers-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .search-and-sort {
+    flex-direction: column;
+    align-items: stretch;
+    /* Make search and sort take full width */
+  }
+
+  .search-bar-listings {
+    max-width: none;
+    /* Allow search bar to take full width */
+  }
+
+  .sort-options {
+    width: 100%;
+    /* Make sort options take full width */
+  }
+
+  .sort-options select {
+    width: 100%;
+    /* Make select take full width */
+  }
+
+  .service-providers-grid {
+    grid-template-columns: 1fr;
+    /* Single column on very small screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .minimal-header .container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .main-nav-listings {
+    margin-top: 0.5rem;
+  }
+
+  .listings-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .filters-sidebar {
+    padding: 1rem;
+  }
+
+  .service-provider-card .provider-info {
+    padding: 0.8rem;
+  }
+}
+
+.filter-group input[type="text"].location-search-input {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid var(--border-color);
+  border-radius: calc(var(--border-radius) - 2px);
+  font-size: 0.9rem;
+  box-sizing: border-box;
+}
+
+.filter-group input[type="text"].location-search-input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
+  /* Optional: focus style */
+  outline: none;
+}
+
+
+
+/* ServiceProviderProfilePage.css */
+
+/* --- Reusable Variables (Consider moving to a global CSS file) --- */
+/* :root {
+  --primary-color: #007bff;
+  --primary-color-dark: #0056b3;
+  --secondary-color: #6c757d;
+  --light-color: #f4f6f8; 
+  --dark-color: #343a40;
+  --text-color: #212529;
+  --border-color: #dee2e6;
+  --card-bg: #ffffff;
+  --star-color: #ffc107;
+  --verified-color: #28a745;
+  --border-radius: 8px;
+  --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+} */
+
+/* --- Basic Page Structure --- */
+.provider-profile-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--light-color);
+  font-family: var(--font-family);
+  color: var(--text-color);
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  /* Standard container width */
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* --- Minimal Header (Can be global) --- */
+.minimal-header {
+  background-color: #fff;
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 1001;
+  /* Ensure header is above other sticky elements if any */
+}
+
+.minimal-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.minimal-header .logo a {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--dark-color);
+  text-decoration: none;
+}
+
+.minimal-header .logo .logo-accent {
+  color: var(--primary-color);
+}
+
+.main-nav-profile a {
+  margin-left: 1.5rem;
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.main-nav-profile a:hover {
+  color: var(--primary-color);
+}
+
+/* --- Profile Banner --- */
+.profile-banner {
+  height: 250px;
+  /* Adjust as needed */
+  background-size: cover;
+  background-position: center;
+  background-color: var(--secondary-color);
+  /* Fallback color */
+  margin-bottom: -75px;
+  /* Overlap with content below for a nice effect */
+}
+
+/* --- Profile Main Content --- */
+.profile-main-content {
+  padding-top: 2rem;
+  /* Space for banner overlap */
+  padding-bottom: 2rem;
+}
+
+/* Profile Header Section (Picture, Name, Book Button) */
+.profile-header-section {
+  display: flex;
+  align-items: flex-end;
+  /* Align items to the bottom for better layout with picture */
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  position: relative;
+  /* For banner overlap */
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 4px solid var(--card-bg);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  object-fit: cover;
+  margin-top: -90px;
+  /* Pulls picture up onto banner slightly */
+  background-color: #ccc;
+  /* Fallback for image */
+}
+
+.profile-header-info {
+  flex-grow: 1;
+}
+
+.profile-header-info h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--dark-color);
+  margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+}
+
+.verified-badge-profile {
+  font-size: 0.9rem;
+  color: var(--verified-color);
+  background-color: #e6f7eb;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--border-radius);
+  margin-left: 0.75rem;
+  font-weight: 500;
+}
+
+
+.profile-tagline {
+  font-size: 1.1rem;
+  color: var(--secondary-color);
+  margin-bottom: 0.75rem;
+}
+
+.profile-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+.profile-meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.profile-meta .icon {
+  color: var(--secondary-color);
+  /* Slightly muted icons in meta */
+}
+
+
+.btn-book-service {
+  padding: 0.8rem 1.8rem;
+  font-size: 1.05rem;
+  align-self: flex-end;
+  /* Align button to bottom if header info wraps */
+}
+
+/* --- Profile Layout (2 columns) --- */
+.profile-layout {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.profile-left-column {
+  flex: 2;
+  /* Takes 2/3 of the space */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.profile-right-column {
+  flex: 1;
+  /* Takes 1/3 of the space */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.profile-right-column .profile-section {
+  position: sticky;
+  /* Make right column content sticky */
+  top: 100px;
+  /* Adjust based on header height */
+}
+
+
+/* --- General Profile Section Styling --- */
+.profile-section {
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.profile-section.card-style {
+  /* For smaller cards in right column */
+  /* Can add specific card styles if needed, already inherits .profile-section */
+}
+
+
+.profile-section h2 {
+  font-size: 1.5rem;
+  color: var(--dark-color);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.profile-section h2 .icon {
+  color: var(--primary-color);
+}
+
+
+.about-section p {
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+}
+
+.specialties-list {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin: 0;
+}
+
+.specialties-list li {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+/* Contact & Hours Section */
+.contact-section p,
+.hours-section li {
+  font-size: 0.95rem;
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.contact-section p .icon,
+.hours-section li .icon {
+  color: var(--secondary-color);
+  flex-shrink: 0;
+  /* Prevent icon from shrinking */
+}
+
+.contact-section a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.contact-section a:hover {
+  text-decoration: underline;
+}
+
+.hours-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Gallery Section */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.gallery-item {
+  position: relative;
+  cursor: pointer;
+  border-radius: calc(var(--border-radius) - 4px);
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+.gallery-item-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 0.3rem 0.5rem;
+  font-size: 0.75rem;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-item-caption {
+  opacity: 1;
+}
+
+/* Image Modal */
+.image-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  /* Above everything */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.image-modal-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  background-color: var(--card-bg);
+  /* Just in case image is transparent */
+}
+
+.image-modal-content img {
+  display: block;
+  max-width: 100%;
+  max-height: 100vh;
+  /* Max height relative to viewport */
+  object-fit: contain;
+  border-radius: var(--border-radius);
+}
+
+.close-modal-btn {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  line-height: 30px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Reviews Section */
+.reviews-summary {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background-color: var(--light-color);
+  border-radius: var(--border-radius);
+}
+
+.average-rating {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--dark-color);
+}
+
+.reviews-summary>div {
+  /* Star container */
+  display: flex;
+}
+
+.reviews-summary>span:last-child {
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+}
+
+.review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.review-card {
+  border: 1px solid var(--border-color);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  background-color: #fff;
+  /* Ensure white background if page is light gray */
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.review-user-name {
+  font-weight: 600;
+}
+
+.review-date {
+  font-size: 0.8rem;
+  color: var(--secondary-color);
+}
+
+.review-rating {
+  margin-bottom: 0.5rem;
+  display: flex;
+}
+
+.review-rating .icon-star.filled-star {
+  fill: var(--star-color);
+  /* Fill for stars in reviews */
+  stroke: var(--star-color);
+}
+
+.review-rating .icon-star.empty-star {
+  fill: #e0e0e0;
+  stroke: #e0e0e0;
+}
+
+.review-comment {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* --- Buttons (can be global) --- */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  border: 1px solid transparent;
+  line-height: 1.5;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-color-dark);
+  border-color: var(--primary-color-dark);
+  text-decoration: none;
+}
+
+
+/* --- Minimal Footer (Can be global) --- */
+.minimal-footer {
+  background-color: var(--dark-color);
+  color: var(--light-color);
+  padding: 1.5rem 0;
+  text-align: center;
+  font-size: 0.85rem;
+  margin-top: 2rem;
+}
+
+.minimal-footer p {
+  margin: 0.25rem 0;
+  opacity: 0.8;
+}
+
+.minimal-footer a {
+  color: var(--light-color);
+  text-decoration: none;
+}
+
+.minimal-footer a:hover {
+  text-decoration: underline;
+  opacity: 1;
+}
+
+/* --- Loading State --- */
+.loading-state {
+  text-align: center;
+  padding: 4rem;
+  font-size: 1.2rem;
+  color: var(--secondary-color);
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+  .profile-layout {
+    flex-direction: column;
+  }
+
+  .profile-right-column .profile-section {
+    position: static;
+    /* Remove sticky for stacked layout */
+  }
+
+  .profile-banner {
+    height: 200px;
+    margin-bottom: -60px;
+  }
+
+  .profile-picture {
+    width: 120px;
+    height: 120px;
+    margin-top: -70px;
+  }
+
+  .profile-header-info h1 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-header-section {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .profile-picture {
+    margin-top: -75px;
+    /* Adjust for centered layout */
+  }
+
+  .btn-book-service {
+    align-self: center;
+    /* Center button in column layout */
+    width: 100%;
+    max-width: 300px;
+    margin-top: 1rem;
+  }
+
+  .profile-meta {
+    justify-content: center;
+  }
+
+  .reviews-summary {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .average-rating {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .minimal-header .container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .main-nav-profile {
+    margin-top: 0.5rem;
+  }
+
+  .profile-banner {
+    height: 150px;
+    margin-bottom: -50px;
+  }
+
+  .profile-picture {
+    width: 100px;
+    height: 100px;
+    margin-top: -60px;
+  }
+
+  .profile-header-info h1 {
+    font-size: 1.6rem;
+  }
+
+  .profile-tagline {
+    font-size: 1rem;
+  }
+
+  .profile-section {
+    padding: 1rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.5rem;
+  }
+
+  .gallery-item img {
+    height: 100px;
+  }
+}
+
+/* BookingFormPage.css */
+
+/* --- Reusable Variables (Consider moving to a global CSS file) --- */
+/* :root {
+  --primary-color: #007bff;
+  --primary-color-dark: #0056b3;
+  --secondary-color: #6c757d;
+  --light-color: #f8f9fa; 
+  --dark-color: #343a40;
+  --text-color: #212529;
+  --border-color: #dee2e6;
+  --card-bg: #ffffff;
+  --error-color: #dc3545;
+  --border-radius: 8px;
+  --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+} */
+
+/* --- Basic Page Structure --- */
+.booking-form-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--light-color);
+  font-family: var(--font-family);
+  color: var(--text-color);
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  /* Slightly narrower than profile for focus */
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* --- Minimal Header (Can be global) --- */
+.minimal-header {
+  background-color: #fff;
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 1001;
+}
+
+.minimal-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.minimal-header .logo a {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--dark-color);
+  text-decoration: none;
+}
+
+.minimal-header .logo .logo-accent {
+  color: var(--primary-color);
+}
+
+.main-nav-booking a {
+  margin-left: 1.5rem;
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.main-nav-booking a:hover {
+  color: var(--primary-color);
+}
+
+/* --- Main Content --- */
+.booking-main-content {
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+}
+
+.booking-main-content>h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--dark-color);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.booking-layout {
+  display: flex;
+  gap: 2.5rem;
+  /* Increased gap */
+}
+
+/* --- Booking Form Section (Left) --- */
+.booking-form-section {
+  flex: 2;
+  /* Takes more space */
+  background-color: var(--card-bg);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.service-provider-summary-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--light-color);
+  /* Slightly different background */
+  border-radius: var(--border-radius);
+  margin-bottom: 2rem;
+  border: 1px solid var(--border-color);
+}
+
+.provider-thumb {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border-color);
+}
+
+.service-provider-summary-card h3 {
+  font-size: 1.25rem;
+  margin: 0 0 0.25rem 0;
+  color: var(--dark-color);
+}
+
+.service-provider-summary-card p {
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+  margin: 0.2rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.category-tag {
+  background-color: var(--primary-color-dark);
+  color: white;
+  padding: 0.15rem 0.5rem;
+  border-radius: 10px;
+  font-size: 0.75rem !important;
+  /* Important to override other p styles */
+  display: inline-block !important;
+  /* Ensure it behaves like a tag */
+  margin-top: 0.3rem !important;
+}
+
+
+.booking-form-section h2 {
+  font-size: 1.4rem;
+  color: var(--dark-color);
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.booking-form-section h2:first-of-type {
+  margin-top: 0;
+  /* No top margin for the first h2 after summary card */
+}
+
+
+.form-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+  /* Allow groups to grow */
+}
+
+.form-group.half-width {
+  flex-basis: calc(50% - 0.75rem);
+  /* Adjust for gap */
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.form-group input[type="date"],
+.form-group input[type="text"],
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 0.95rem;
+  border: 1px solid var(--border-color);
+  border-radius: calc(var(--border-radius) - 2px);
+  box-sizing: border-box;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  background-color: #fff;
+  /* Ensure inputs are white */
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  outline: none;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.error-text {
+  color: var(--error-color);
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+.form-group input[aria-invalid="true"],
+.form-group select[aria-invalid="true"] {
+  border-color: var(--error-color);
+}
+
+/* --- Booking Summary Section (Right) --- */
+.booking-summary-section {
+  flex: 1;
+  /* Takes less space */
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  height: fit-content;
+  /* Stick to content height */
+  position: sticky;
+  top: 100px;
+  /* Adjust based on header height */
+}
+
+.booking-summary-section h3 {
+  font-size: 1.4rem;
+  color: var(--dark-color);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  margin-bottom: 0.8rem;
+}
+
+.summary-item span:first-child {
+  color: var(--secondary-color);
+}
+
+.summary-item span:last-child {
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.summary-item.total span {
+  font-size: 1.15rem;
+  font-weight: bold;
+  color: var(--dark-color);
+}
+
+.summary-divider {
+  border: none;
+  border-top: 1px dashed var(--border-color);
+  margin: 1rem 0;
+}
+
+.btn-proceed {
+  margin-top: 1.5rem;
+  padding: 0.9rem;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.secure-payment-info {
+  font-size: 0.8rem;
+  color: var(--secondary-color);
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* --- Buttons (can be global) --- */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  border: 1px solid transparent;
+  line-height: 1.5;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-color-dark);
+  border-color: var(--primary-color-dark);
+  text-decoration: none;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+/* --- Minimal Footer (Can be global) --- */
+.minimal-footer {
+  background-color: var(--dark-color);
+  color: var(--light-color);
+  padding: 1.5rem 0;
+  text-align: center;
+  font-size: 0.85rem;
+  margin-top: 2rem;
+}
+
+.minimal-footer p {
+  margin: 0.25rem 0;
+  opacity: 0.8;
+}
+
+.minimal-footer a {
+  color: var(--light-color);
+  text-decoration: none;
+}
+
+.minimal-footer a:hover {
+  text-decoration: underline;
+  opacity: 1;
+}
+
+/* --- Loading State --- */
+.loading-state {
+  text-align: center;
+  padding: 4rem;
+  font-size: 1.2rem;
+  color: var(--secondary-color);
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+  .booking-layout {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .booking-summary-section {
+    position: static;
+    /* Remove sticky for stacked layout */
+    margin-top: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+    /* Remove gap, rely on form-group margin */
+    margin-bottom: 0;
+    /* Handled by form-group */
+  }
+
+  .form-group.half-width {
+    flex-basis: auto;
+    /* Full width in column layout */
+    /* margin-bottom: 1.5rem; /* Ensure consistent spacing */
+  }
+
+  .booking-main-content>h1 {
+    font-size: 1.8rem;
+  }
+
+  .booking-form-section,
+  .booking-summary-section {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .minimal-header .container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .main-nav-booking {
+    margin-top: 0.5rem;
+  }
+}
+
+/* PaymentPage.css */
+
+/* --- Reusable Variables (Consider moving to a global CSS file) --- */
+/* :root {
+  --primary-color: #007bff;
+  --primary-color-dark: #0056b3;
+  --secondary-color: #6c757d;
+  --light-color: #f8f9fa; 
+  --dark-color: #343a40;
+  --text-color: #212529;
+  --border-color: #dee2e6;
+  --card-bg: #ffffff;
+  --error-color: #dc3545;
+  --success-color: #28a745;
+  --border-radius: 8px;
+  --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+} */
+
+/* --- Basic Page Structure --- */
+.payment-page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--light-color);
+  font-family: var(--font-family);
+  color: var(--text-color);
+}
+
+.container {
+  width: 90%;
+  max-width: 1000px;
+  /* Slightly narrower for payment focus */
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* --- Minimal Header (Can be global) --- */
+.minimal-header {
+  background-color: #fff;
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 1001;
+}
+
+.minimal-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.minimal-header .logo a {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--dark-color);
+  text-decoration: none;
+}
+
+.minimal-header .logo .logo-accent {
+  color: var(--primary-color);
+}
+
+.main-nav-payment a {
+  margin-left: 1.5rem;
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.main-nav-payment a:hover {
+  color: var(--primary-color);
+}
+
+/* --- Main Content --- */
+.payment-main-content {
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+}
+
+.payment-main-content>h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--dark-color);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.payment-layout {
+  display: flex;
+  flex-direction: row-reverse;
+  /* Order summary on the right by default */
+  gap: 2.5rem;
+}
+
+/* --- Payment Form Section (Left/Main) --- */
+.payment-form-section {
+  flex: 1.8;
+  /* Takes more space */
+  background-color: var(--card-bg);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.payment-form-section h2 {
+  font-size: 1.5rem;
+  color: var(--dark-color);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.secure-info-text {
+  font-size: 0.85rem;
+  color: var(--secondary-color);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.secure-info-text .icon-lock {
+  color: var(--success-color);
+}
+
+.payment-gateway-logos {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+}
+
+.payment-gateway-logos img {
+  height: 25px;
+  /* Adjust as needed */
+  opacity: 0.7;
+}
+
+
+.form-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  /* For rows containing multiple groups */
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  /* For individual groups not in a row */
+  flex-grow: 1;
+}
+
+.form-group.half-width {
+  flex-basis: calc(50% - 0.75rem);
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+.form-group input[type="text"] {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 0.95rem;
+  border: 1px solid var(--border-color);
+  border-radius: calc(var(--border-radius) - 2px);
+  box-sizing: border-box;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.form-group input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  outline: none;
+}
+
+.error-text {
+  color: var(--error-color);
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+.form-group input[aria-invalid="true"] {
+  border-color: var(--error-color);
+}
+
+/* Payment process messages */
+.payment-process-error,
+.payment-process-success {
+  padding: 0.8rem 1rem;
+  border-radius: var(--border-radius);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  /* Ensure space before button */
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.payment-process-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.payment-process-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+
+.btn-pay-now {
+  margin-top: 1rem;
+  /* Ensure space above button if no error message */
+  padding: 0.9rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.btn-pay-now:disabled {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  cursor: not-allowed;
+}
+
+
+/* --- Order Summary Section (Right/Side) --- */
+.order-summary-section {
+  flex: 1.2;
+  /* Takes less space */
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  height: fit-content;
+  position: sticky;
+  top: 100px;
+  /* Adjust based on header height */
+}
+
+.order-summary-section h3 {
+  font-size: 1.4rem;
+  color: var(--dark-color);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.summary-card-item {
+  padding: 0.8rem 0;
+  border-bottom: 1px dashed var(--border-color);
+}
+
+.summary-card-item:last-of-type {
+  /* No bottom border for the last item before hr */
+  /* border-bottom: none; */
+  /* This will be handled by the main hr */
+}
+
+.summary-card-item h4 {
+  font-size: 1.05rem;
+  color: var(--dark-color);
+  margin: 0 0 0.3rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.summary-card-item p {
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+  margin: 0.2rem 0;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  margin-bottom: 0.8rem;
+}
+
+.summary-item span:first-child {
+  color: var(--secondary-color);
+}
+
+.summary-item span:last-child {
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.summary-item.total span {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--dark-color);
+}
+
+.summary-divider {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  /* Solid divider */
+  margin: 1.2rem 0;
+}
+
+
+/* --- Buttons (can be global) --- */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  border: 1px solid transparent;
+  line-height: 1.5;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-color-dark);
+  border-color: var(--primary-color-dark);
+  text-decoration: none;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+/* --- Minimal Footer (Can be global) --- */
+.minimal-footer {
+  background-color: var(--dark-color);
+  color: var(--light-color);
+  padding: 1.5rem 0;
+  text-align: center;
+  font-size: 0.85rem;
+  margin-top: 2rem;
+}
+
+.minimal-footer p {
+  margin: 0.25rem 0;
+  opacity: 0.8;
+}
+
+.minimal-footer a {
+  color: var(--light-color);
+  text-decoration: none;
+}
+
+.minimal-footer a:hover {
+  text-decoration: underline;
+  opacity: 1;
+}
+
+/* --- Global Error Message (if booking details are missing) --- */
+.error-message.global-error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  margin: 2rem auto;
+  /* Center it if it's the main content */
+  text-align: center;
+  max-width: 600px;
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+  .payment-layout {
+    flex-direction: column;
+    /* Stack form and summary */
+    gap: 1.5rem;
+  }
+
+  .order-summary-section {
+    position: static;
+    /* Remove sticky for stacked layout */
+    order: -1;
+    /* Show summary on top on smaller screens */
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 0;
+  }
+
+  .form-group.half-width {
+    flex-basis: auto;
+    margin-bottom: 1.5rem;
+    /* Add margin back for stacked half-width inputs */
+  }
+
+  .form-group.half-width:last-child {
+    margin-bottom: 1.5rem;
+    /* Ensure consistent spacing */
+  }
+
+  .payment-main-content>h1 {
+    font-size: 1.8rem;
+  }
+
+  .payment-form-section,
+  .order-summary-section {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .minimal-header .container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .main-nav-payment {
+    margin-top: 0.5rem;
+  }
+}
+
+
+
+/* BookingSuccessPage.css */
+
+/* --- Reusable Variables (Consider moving to a global CSS file) --- */
+/* :root {
+  --primary-color: #007bff;
+  --primary-color-dark: #0056b3;
+  --secondary-color: #6c757d; 
+  --light-color: #f8f9fa; 
+  --dark-color: #343a40;
+  --text-color: #212529;
+  --border-color: #dee2e6;
+  --card-bg: #ffffff;
+  --success-color: #28a745;
+  --error-color: #dc3545;
+  --border-radius: 8px;
+  --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+} */
+
+/* --- Basic Page Structure --- */
+.booking-success-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--light-color);
+  font-family: var(--font-family);
+  color: var(--text-color);
+}
+
+.container {
+  width: 90%;
+  max-width: 800px;
+  /* Centered content, not too wide */
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* --- Minimal Header (Can be global) --- */
+.minimal-header {
+  background-color: #fff;
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.minimal-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.minimal-header .logo a {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--dark-color);
+  text-decoration: none;
+}
+
+.minimal-header .logo .logo-accent {
+  color: var(--primary-color);
+}
+
+/* --- Main Content --- */
+.success-main-content {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+}
+
+.success-card {
+  background-color: var(--card-bg);
+  padding: 2.5rem 3rem;
+  /* More padding */
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  text-align: center;
+  width: 100%;
+}
+
+.status-icon {
+  margin-bottom: 1.5rem;
+}
+
+.success-card h1 {
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--dark-color);
+  margin-bottom: 0.75rem;
+}
+
+.success-subtitle {
+  font-size: 1.1rem;
+  color: var(--secondary-color);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.success-subtitle strong {
+  color: var(--dark-color);
+}
+
+/* Booking Details Summary Box */
+.booking-details-summary {
+  background-color: var(--light-color);
+  /* Slightly different background for the box */
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: left;
+  /* Align text to left within the summary box */
+}
+
+.booking-details-summary h3 {
+  font-size: 1.3rem;
+  color: var(--dark-color);
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.booking-details-summary p {
+  font-size: 0.95rem;
+  color: var(--text-color);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  /* Gap between icon and text */
+}
+
+.booking-details-summary p strong:first-child {
+  /* For labels like "Booking ID:" */
+  color: var(--secondary-color);
+  min-width: 120px;
+  /* Align values */
+  display: inline-block;
+}
+
+.booking-details-summary p .icon {
+  color: var(--primary-color);
+  /* Color for icons in summary */
+  margin-right: 0.3rem;
+  /* Ensure space if not using gap */
+}
+
+.total-amount-display {
+  font-size: 1.1rem !important;
+  /* Override p font-size */
+  font-weight: bold;
+  margin-top: 1rem !important;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--border-color);
+}
+
+.total-amount-display strong {
+  color: var(--dark-color) !important;
+}
+
+
+.confirmation-note {
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+  line-height: 1.5;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+  /* Add some horizontal padding for readability */
+}
+
+/* Action Buttons */
+.success-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  /* Allow buttons to wrap on smaller screens */
+}
+
+.btn {
+  display: inline-flex;
+  /* Use inline-flex for icon alignment */
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  /* Space between icon and text */
+  padding: 0.8rem 1.8rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  border: 1px solid transparent;
+  line-height: 1.5;
+  text-decoration: none;
+  /* Ensure links styled as buttons don't have underlines */
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-color-dark);
+  border-color: var(--primary-color-dark);
+  color: #fff;
+  /* Ensure text color remains white */
+}
+
+.btn-secondary {
+  background-color: var(--card-bg);
+  /* Light background for secondary button */
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+  background-color: #e9ecef;
+  /* Slightly darker on hover */
+  color: var(--primary-color-dark);
+  border-color: var(--primary-color-dark);
+}
+
+
+/* --- Minimal Footer (Can be global) --- */
+.minimal-footer {
+  background-color: var(--dark-color);
+  color: var(--light-color);
+  padding: 1.5rem 0;
+  text-align: center;
+  font-size: 0.85rem;
+  margin-top: auto;
+  /* Push footer to bottom if content is short */
+}
+
+.minimal-footer p {
+  margin: 0.25rem 0;
+  opacity: 0.8;
+}
+
+.minimal-footer a {
+  color: var(--light-color);
+  text-decoration: none;
+}
+
+.minimal-footer a:hover {
+  text-decoration: underline;
+  opacity: 1;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .success-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .success-card h1 {
+    font-size: 1.8rem;
+  }
+
+  .success-subtitle {
+    font-size: 1rem;
+  }
+
+  .booking-details-summary {
+    padding: 1rem;
+  }
+
+  .booking-details-summary p strong:first-child {
+    min-width: 100px;
+    /* Adjust for smaller screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .minimal-header .container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .success-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .status-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .success-card h1 {
+    font-size: 1.6rem;
+  }
+
+  .success-actions {
+    flex-direction: column;
+    /* Stack buttons */
+  }
+
+  .btn {
+    width: 100%;
+    /* Make buttons full width when stacked */
+    margin-bottom: 0.5rem;
+  }
+
+  .btn:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* UserDashboardPage.css */
+
+/* --- Reusable Variables (Consider moving to a global CSS file) --- */
+/* :root {
+  --primary-color: #007bff;
+  --primary-color-dark: #0056b3;
+  --secondary-color: #6c757d;
+  --light-color: #f4f6f8; 
+  --dark-color: #343a40;
+  --text-color: #212529;
+  --sidebar-bg: #ffffff; 
+  --sidebar-text-color: #333;
+  --sidebar-active-bg: #e9ecef;
+  --sidebar-active-text: var(--primary-color);
+  --border-color: #dee2e6;
+  --card-bg: #ffffff;
+  --border-radius: 8px;
+  --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+} */
+
+/* --- Main Page Layout --- */
+.user-dashboard-page {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--light-color);
+  font-family: var(--font-family);
+}
+
+/* --- Sidebar --- */
+.dashboard-sidebar {
+  width: 260px;
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text-color);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1rem;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+  position: fixed;
+  /* Fixed sidebar */
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1000;
+}
+
+.sidebar-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.user-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 0.75rem;
+  border: 3px solid var(--primary-color);
+}
+
+.sidebar-header h3 {
+  margin: 0.5rem 0 0.25rem 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.user-email-sidebar {
+  font-size: 0.85rem;
+  color: var(--secondary-color);
+  word-break: break-all;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-nav li a {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.9rem 1rem;
+  text-decoration: none;
+  color: var(--sidebar-text-color);
+  border-radius: var(--border-radius);
+  margin-bottom: 0.3rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  font-weight: 500;
+}
+
+.sidebar-nav li a:hover {
+  background-color: var(--sidebar-active-bg);
+  color: var(--sidebar-active-text);
+}
+
+.sidebar-nav li.active a {
+  background-color: var(--primary-color);
+  color: #fff;
+  font-weight: 600;
+}
+
+.sidebar-nav li.active a .icon {
+  stroke: #fff;
+  /* Ensure icon color matches text in active state */
+}
+
+
+.sidebar-footer {
+  margin-top: auto;
+  /* Pushes logout button to the bottom */
+}
+
+.btn-logout {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  width: 100%;
+  padding: 0.9rem 1rem;
+  background-color: transparent;
+  color: var(--secondary-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-weight: 500;
+  text-align: left;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-logout:hover {
+  background-color: #f8d7da;
+  /* Light red for logout hover */
+  color: var(--error-color, #dc3545);
+  border-color: #f5c6cb;
+}
+
+/* --- Main Content Area --- */
+.dashboard-main-content {
+  margin-left: 260px;
+  /* Same as sidebar width */
+  flex-grow: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  /* Allow scrolling for content */
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.dashboard-header h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--dark-color);
+}
+
+.new-booking-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.2rem;
+}
+
+/* Section Styling */
+.dashboard-section {
+  background-color: var(--card-bg);
+  padding: 1.5rem 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  margin-bottom: 2rem;
+}
+
+.dashboard-section h2 {
+  font-size: 1.5rem;
+  color: var(--dark-color);
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.dashboard-section h3 {
+  font-size: 1.2rem;
+  color: var(--dark-color);
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Overview Grid */
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.overview-card {
+  background-color: var(--light-color);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.overview-card h3 {
+  font-size: 1rem;
+  color: var(--secondary-color);
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.stat-number {
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 0.75rem;
+}
+
+.card-link {
+  font-size: 0.9rem;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.card-link:hover {
+  text-decoration: underline;
+}
+
+
+/* Booking List Styling */
+.booking-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.booking-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+  background-color: #fff;
+}
+
+.booking-item-info strong {
+  display: block;
+  font-size: 1.05rem;
+  color: var(--dark-color);
+  margin-bottom: 0.25rem;
+}
+
+.booking-item-info p {
+  font-size: 0.85rem;
+  color: var(--secondary-color);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.booking-status {
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+  /* Pill shape */
+  text-transform: capitalize;
+}
+
+.booking-status.scheduled {
+  background-color: #e6f7ff;
+  /* Light blue */
+  color: #005f89;
+}
+
+.booking-status.completed {
+  background-color: #d4edda;
+  /* Light green */
+  color: #155724;
+}
+
+.booking-status.cancelled {
+  background-color: #f8d7da;
+  /* Light red */
+  color: #721c24;
+}
+
+/* Profile Details Card */
+.profile-details-card {
+  background-color: var(--light-color);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+}
+
+.profile-details-card p {
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+  color: var(--text-color);
+}
+
+.profile-details-card p strong {
+  color: var(--secondary-color);
+  min-width: 120px;
+  display: inline-block;
+}
+
+.profile-details-card .btn {
+  margin-top: 1rem;
+}
+
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  border: 1px solid transparent;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-color-dark);
+  border-color: var(--primary-color-dark);
+}
+
+.btn-secondary {
+  background-color: var(--card-bg);
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+  background-color: #e9ecef;
+  color: var(--primary-color-dark);
+  border-color: var(--primary-color-dark);
+}
+
+.btn-small {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+}
+
+/* Loading State */
+.loading-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-size: 1.2rem;
+  color: var(--secondary-color);
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+  .dashboard-sidebar {
+    width: 220px;
+    /* Slightly narrower sidebar */
+  }
+
+  .dashboard-main-content {
+    margin-left: 220px;
+  }
+
+  .dashboard-header h1 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .user-dashboard-page {
+    flex-direction: column;
+    /* Stack sidebar and content */
+  }
+
+  .dashboard-sidebar {
+    position: static;
+    /* Remove fixed positioning */
+    width: 100%;
+    height: auto;
+    box-shadow: none;
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem;
+  }
+
+  .sidebar-header {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    border-bottom: none;
+  }
+
+  .user-avatar {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 0;
+  }
+
+  .sidebar-header h3 {
+    font-size: 1.1rem;
+  }
+
+  .user-email-sidebar {
+    display: none;
+    /* Hide email on small sidebar header */
+  }
+
+  .sidebar-nav ul {
+    display: flex;
+    /* Horizontal nav on mobile */
+    overflow-x: auto;
+    /* Allow scrolling for nav items */
+    padding-bottom: 0.5rem;
+    /* Space for scrollbar */
+  }
+
+  .sidebar-nav li {
+    flex-shrink: 0;
+    /* Prevent items from shrinking */
+  }
+
+  .sidebar-nav li a {
+    padding: 0.7rem 1rem;
+    margin-bottom: 0;
+    margin-right: 0.5rem;
+    /* Space between horizontal items */
+  }
+
+  .sidebar-footer {
+    display: none;
+    /* Hide logout in horizontal nav, can be moved to a top bar or dropdown */
+  }
+
+  .dashboard-main-content {
+    margin-left: 0;
+    padding: 1.5rem;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .new-booking-btn {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .booking-list-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .booking-list-item .btn {
+    margin-top: 0.5rem;
+    align-self: flex-end;
+  }
+}
+
+@media (max-width: 480px) {
+  .overview-grid {
+    grid-template-columns: 1fr;
+    /* Single column for overview cards */
+  }
+
+  .dashboard-section {
+    padding: 1rem 1.2rem;
+  }
+
+  .dashboard-header h1 {
+    font-size: 1.4rem;
+  }
+}
+
+.exploreButton {
+  background-color: rgb(77, 151, 255);
+  color: white;
+}
+
+
+/* UserDashboardPage.css - Additions/Modifications */
+
+/* ... (existing styles from your UserDashboardPage.css) ... */
+
+/* Styles for EditUserProfileForm (if defined inline or imported) */
+.edit-user-profile-form {
+  background-color: #f9f9f9;
+  /* Light background for the form area */
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  margin-top: 1rem;
+}
+
+.edit-user-profile-form h4 {
+  font-size: 1.3rem;
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+.edit-user-profile-form .form-subsection-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--dark-color);
+  margin-top: 1.5rem;
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid #eee;
+}
+
+
+.edit-user-profile-form .form-group {
+  margin-bottom: 1.2rem;
+}
+
+.edit-user-profile-form .form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+}
+
+.edit-user-profile-form .form-group input[type="text"],
+.edit-user-profile-form .form-group input[type="email"],
+.edit-user-profile-form .form-group input[type="tel"] {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.95rem;
+  border: 1px solid var(--border-color);
+  border-radius: calc(var(--border-radius) - 4px);
+  box-sizing: border-box;
+}
+
+.edit-user-profile-form .form-group input[readonly] {
+  background-color: #e9ecef;
+  /* Bootstrap's readonly style */
+  cursor: not-allowed;
+}
+
+.edit-user-profile-form .error-text {
+  color: var(--error-color);
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+.edit-user-profile-form .form-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start;
+}
+
+.edit-user-profile-form .form-row {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.edit-user-profile-form .form-group.half-width {
+  flex-basis: calc(50% - 0.75rem);
+  flex-grow: 1;
+}
+
+
+/* Styles for Profile View Mode within .dashboard-section */
+.profile-details-card {
+  /* background-color: var(--light-color); */
+  /* Already in a section with card-bg */
+  padding: 1rem 0;
+  /* Remove card-like padding if it's inside a section */
+}
+
+.profile-info-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.user-avatar-large {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border: 4px solid var(--primary-color);
+}
+
+.profile-info-header h3 {
+  font-size: 1.6rem;
+  margin-bottom: 0.25rem;
+}
+
+.profile-info-header p {
+  font-size: 1rem;
+  color: var(--secondary-color);
+}
+
+.profile-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.profile-info-grid div h4 {
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  margin-bottom: 0.75rem;
+}
+
+.profile-info-grid p {
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.profile-info-grid p strong {
+  color: var(--secondary-color);
+  min-width: 80px;
+  /* Adjust as needed */
+  display: inline-block;
+}
+
+.member-since-text {
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.edit-profile-main-btn {
+  display: block;
+  /* Make button block */
+  margin: 1.5rem auto 0 auto;
+  /* Center it */
+  max-width: 200px;
+}
+
+
+/* Styles for Booking Detail View */
+.booking-detail-view {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  margin-top: 1rem;
+}
+
+.booking-detail-view p {
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+  line-height: 1.6;
+  display: flex;
+  /* For icon alignment */
+  align-items: flex-start;
+  /* Align icon with first line of text */
+  gap: 0.5rem;
+}
+
+.booking-detail-view p strong:first-child {
+  /* For labels */
+  color: var(--secondary-color);
+  min-width: 120px;
+  display: inline-block;
+  font-weight: 600;
+}
+
+.booking-detail-view .icon {
+  margin-top: 0.15em;
+  /* Align icon better with text */
+  color: var(--primary-color);
+  flex-shrink: 0;
+}
+
+.booking-detail-view .btn-secondary {
+  margin-top: 1.5rem;
+}
+
+/* Responsive adjustments for edit form and profile view */
+@media (max-width: 768px) {
+
+  .edit-user-profile-form .form-row,
+  .profile-info-grid {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .edit-user-profile-form .form-group.half-width {
+    flex-basis: auto;
+    margin-bottom: 1.2rem;
+  }
+
+  .profile-info-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .user-avatar-large {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+/* Service List Styling */
+
+.browse-services-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--light-color);
+  font-family: var(--font-family);
+  color: var(--text-color);
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* --- Minimal Header (Can be global or from AuthCommon.css) --- */
+.minimal-header {
+  background-color: #fff;
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.minimal-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.minimal-header .logo a {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--dark-color);
+  text-decoration: none;
+}
+
+.minimal-header .logo .logo-accent {
+  color: var(--primary-color);
+}
+
+.main-nav-browse a {
+  margin-left: 1.5rem;
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.main-nav-browse a:hover {
+  color: var(--primary-color);
+}
+
+/* --- Main Content --- */
+.browse-main-content {
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+}
+
+.page-title-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.page-title-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--dark-color);
+  margin-bottom: 0.5rem;
+}
+
+.page-title-header p {
+  font-size: 1.1rem;
+  color: var(--secondary-color);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Service Search Bar */
+.service-search-bar-container {
+  display: flex;
+  align-items: center;
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 0.5rem 1rem;
+  margin-bottom: 2.5rem;
+  border: 1px solid var(--border-color);
+}
+
+.search-bar-icon {
+  color: var(--secondary-color);
+  margin-right: 0.75rem;
+}
+
+.service-search-input {
+  flex-grow: 1;
+  padding: 0.8rem 0.5rem;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.service-search-input::placeholder {
+  color: #aaa;
+}
+
+
+/* Service Category Section */
+.service-category-section {
+  margin-bottom: 3rem;
+}
+
+.category-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--dark-color);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--primary-color);
+  display: inline-flex;
+  /* To align icon with text properly */
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.category-title-icon {
+  color: var(--primary-color);
+}
+
+/* Services Grid */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Service Card */
+.service-card {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+}
+
+.service-card-icon-container {
+  background-color: var(--light-color);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem auto;
+  border: 2px solid var(--primary-color);
+}
+
+.service-card-icon {
+  color: var(--primary-color);
+}
+
+.service-card h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--dark-color);
+  margin-bottom: 0.5rem;
+}
+
+.service-card p {
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+  line-height: 1.5;
+  margin-bottom: 1.2rem;
+  flex-grow: 1;
+  /* Allows description to take up space, pushing button down */
+  min-height: 60px;
+  /* Ensure some consistent height for description area */
+}
+
+.service-card .btn {
+  margin-top: auto;
+  /* Push button to the bottom of the card */
+}
+
+
+/* No Services Found Message */
+.no-services-found {
+  text-align: center;
+  padding: 3rem 1rem;
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  margin-top: 2rem;
+}
+
+.no-services-found .no-results-icon {
+  color: var(--secondary-color);
+  opacity: 0.7;
+  margin-bottom: 1rem;
+}
+
+.no-services-found h3 {
+  font-size: 1.4rem;
+  color: var(--dark-color);
+  margin-bottom: 0.5rem;
+}
+
+.no-services-found p {
+  font-size: 1rem;
+  color: var(--secondary-color);
+}
+
+/* Buttons (can be global or from AuthCommon.css) */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  border: 1px solid transparent;
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-color-dark);
+  border-color: var(--primary-color-dark);
+  color: #fff;
+}
+
+.btn-small {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+/* --- Minimal Footer (Can be global or from AuthCommon.css) --- */
+.minimal-footer {
+  background-color: var(--dark-color);
+  color: var(--light-color);
+  padding: 1.5rem 0;
+  text-align: center;
+  font-size: 0.85rem;
+  margin-top: auto;
+  /* Push footer to bottom */
+}
+
+.minimal-footer p {
+  margin: 0.25rem 0;
+  opacity: 0.8;
+}
+
+.minimal-footer a {
+  color: var(--light-color);
+  text-decoration: none;
+}
+
+.minimal-footer a:hover {
+  text-decoration: underline;
+  opacity: 1;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .page-title-header h1 {
+    font-size: 2rem;
+  }
+
+  .page-title-header p {
+    font-size: 1rem;
+  }
+
+  .category-title {
+    font-size: 1.5rem;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 576px) {
+  .minimal-header .container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .main-nav-browse {
+    margin-top: 0.5rem;
+    display: flex;
+    /* Ensure nav items are in a row */
+    flex-wrap: wrap;
+    /* Allow wrapping if too many items */
+    justify-content: center;
+  }
+
+  .main-nav-browse a {
+    margin: 0 0.5rem;
+    /* Adjust spacing for horizontal layout */
+  }
+
+  .page-title-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .service-search-input {
+    font-size: 0.9rem;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    /* Single column on very small screens */
+  }
+}
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+.btn {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+a{
+  color: white;
+}
+
+.navId{
+    color: white;
+}
+
+
+.lp-btn-primary {
+    background-color: var(--primary-color);
+    color: #fff; /* This should make the text white */
+    border-color: var(--primary-color);
+}
+.lp-main-nav.lp-LandingNav a:not(.lp-btn),
+.lp-main-nav.lp-LandingNav .lp-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 1rem;
+    margin: 0;
+    box-sizing: border-box;
+}
+/* Ensure button text color is white in mobile menu */
+@media (max-width: 992px) {
+    .lp-main-nav.lp-LandingNav.active .lp-btn-primary {
+        color: #fff; /* Explicitly set white text for primary buttons in active mobile nav */
+    }
+
+    /* If you have secondary buttons in the nav and they also lose color, add: */
+    .lp-main-nav.lp-LandingNav.active .lp-btn-secondary {
+        color: #fff; /* Assuming you want white text for secondary buttons too */
+    }
+}

@@ -1,0 +1,811 @@
+/* AdminLoginPage.css */
+/* Specific styles for Admin Login, assuming common auth styles are handled elsewhere. */
+
+/*
+  This file assumes base styles for .auth-page-container, .minimal-header, .logo,
+  .auth-main-content, .auth-form-card, .form-subtitle, .form-group, label,
+  .input-with-icon, input base styles, .error-text, .global-error-message,
+  .btn, .btn-primary, .btn-block, and .minimal-footer are defined in a common CSS file.
+*/
+
+.admin-login-page .logo .admin-tag {
+    font-size: 0.7em;
+    color: var(--secondary-color, #6c757d);
+    font-weight: normal;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+.admin-login-form-card {
+    /* Extends a potential .auth-form-card */
+    max-width: 450px;
+    /* Admin login can be a bit narrower */
+    padding: 2rem 2.5rem;
+    border-top: 5px solid var(--primary-color, #007bff);
+    /* Accent for admin panel */
+}
+
+.admin-form-icon {
+    color: var(--primary-color, #007bff);
+    margin-bottom: 1rem;
+}
+
+.admin-login-form-card h2 {
+    /* If specific styling needed beyond .auth-form-card h2 */
+    font-size: 1.8rem;
+    /* Slightly smaller for admin if desired */
+}
+
+.admin-login-page .label-with-link {
+    display: flex;
+    justify-content: space-between;
+    /* Keeps label to left, link to right */
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.admin-login-page .label-with-link label {
+    margin-bottom: 0;
+}
+
+.admin-login-page .form-link {
+    /* For "Forgot Password?" */
+    font-size: 0.85rem;
+    color: var(--primary-color, #007bff);
+    text-decoration: none;
+}
+
+.admin-login-page .form-link:hover {
+    text-decoration: underline;
+}
+
+.btn-admin-login {
+    /* If any specific styling for the admin login button is needed */
+    /* background-color: var(--dark-color); */
+    /* Example: Darker button for admin */
+    /* border-color: var(--dark-color); */
+    margin-top: 1rem;
+    /* Add some space above the button */
+}
+
+/* .btn-admin-login:hover {
+  background-color: #23272b;
+  border-color: #1d2124;
+} */
+
+.admin-login-page .form-footer-text {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+}
+
+/* Responsive adjustments specific to admin login */
+@media (max-width: 768px) {
+    .admin-login-form-card {
+        padding: 1.5rem;
+    }
+}
+
+
+
+/* AdminDashboardPage.css */
+
+/* --- Reusable Variables (Consider moving to a global CSS file or inheriting) --- */
+:root {
+    --primary-color: #6f42c1;
+    /* Purple theme for admin */
+    --primary-color-dark: #5a32a3;
+    --secondary-color: #6c757d;
+    --light-color: #f4f6f8;
+    --dark-color: #343a40;
+    --text-color: #212529;
+    --sidebar-bg: #2c3e50;
+    /* Dark sidebar for admin */
+    --sidebar-text-color: #ecf0f1;
+    --sidebar-active-bg: var(--primary-color);
+    --sidebar-active-text: #ffffff;
+    --sidebar-hover-bg: #34495e;
+    --border-color: #dee2e6;
+    --card-bg: #ffffff;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    /* For pending status & suspend button */
+    --border-radius: 8px;
+    --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* --- Main Page Layout --- */
+.admin-dashboard-page {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--light-color);
+    font-family: var(--font-family);
+}
+
+/* --- Sidebar --- */
+.dashboard-sidebar.admin-sidebar {
+    width: 260px;
+    background-color: var(--sidebar-bg);
+    color: var(--sidebar-text-color);
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 0;
+    /* No horizontal padding, full width links */
+    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.sidebar-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding: 0 1rem 1.5rem 1rem;
+    border-bottom: 1px solid #46627f;
+    /* Darker border for dark sidebar */
+}
+
+.user-avatar.admin-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 0.75rem;
+    border: 3px solid var(--primary-color);
+}
+
+.sidebar-header h3 {
+    margin: 0.5rem 0 0.25rem 0;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #fff;
+    /* White text on dark sidebar */
+}
+
+.user-email-sidebar {
+    font-size: 0.8rem;
+    color: #bdc3c7;
+    /* Lighter gray for email */
+    word-break: break-all;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav li a {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    /* Increased gap */
+    padding: 0.9rem 1.5rem;
+    /* More padding */
+    text-decoration: none;
+    color: var(--sidebar-text-color);
+    transition: background-color 0.2s ease, color 0.2s ease;
+    font-weight: 500;
+    border-left: 4px solid transparent;
+    /* For active indicator */
+}
+
+.sidebar-nav li a:hover {
+    background-color: var(--sidebar-hover-bg);
+    color: #fff;
+    border-left-color: var(--primary-color-dark);
+}
+
+.sidebar-nav li.active a {
+    background-color: var(--sidebar-active-bg);
+    color: var(--sidebar-active-text);
+    font-weight: 600;
+    border-left-color: var(--light-color);
+    /* Bright indicator */
+}
+
+.sidebar-nav li.active a .icon {
+    stroke: var(--sidebar-active-text);
+    /* Ensure icon color matches */
+}
+
+.sidebar-nav li a .icon {
+    color: #95a5a6;
+    /* Slightly muted icons by default */
+    transition: color 0.2s ease;
+}
+
+.sidebar-nav li a:hover .icon,
+.sidebar-nav li.active a .icon {
+    color: var(--sidebar-active-text);
+    /* Match text color on hover/active */
+}
+
+
+.sidebar-footer {
+    margin-top: auto;
+    padding: 1rem 1.5rem 0.5rem 1.5rem;
+    /* Padding around logout */
+}
+
+.btn-logout {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background-color: var(--sidebar-hover-bg);
+    color: var(--sidebar-text-color);
+    border: 1px solid #46627f;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 500;
+    text-align: left;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-logout:hover {
+    background-color: var(--danger-color);
+    color: #fff;
+    border-color: var(--danger-color);
+}
+
+/* --- Main Content Area --- */
+.dashboard-main-content.admin-main-content {
+    margin-left: 260px;
+    flex-grow: 1;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.dashboard-header h1 {
+    font-size: 1.9rem;
+    /* Slightly larger for admin panel title */
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+/* Section Styling */
+.dashboard-section {
+    background-color: var(--card-bg);
+    padding: 1.5rem 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 2rem;
+}
+
+.dashboard-section h2 {
+    font-size: 1.6rem;
+    /* Larger section titles */
+    color: var(--dark-color);
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.dashboard-section h2 .icon {
+    color: var(--primary-color);
+    /* Icon color matches admin theme */
+}
+
+
+/* Overview Grid for Admin */
+.overview-grid.admin-overview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.overview-card {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--box-shadow);
+    text-align: left;
+    /* Align text left for better readability of stats */
+    display: flex;
+    flex-direction: column;
+}
+
+.overview-card h3 {
+    font-size: 1rem;
+    color: var(--secondary-color);
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.overview-card h3 .icon {
+    color: var(--primary-color);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    /* Larger stat numbers */
+    font-weight: 700;
+    /* Bolder */
+    color: var(--dark-color);
+    margin-bottom: 0.5rem;
+}
+
+.card-link {
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: auto;
+    /* Push link to bottom of card */
+}
+
+.card-link:hover {
+    text-decoration: underline;
+    color: var(--primary-color-dark);
+}
+
+/* Management Table Styling */
+.management-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.management-table th,
+.management-table td {
+    border: 1px solid var(--border-color);
+    padding: 0.8rem 1rem;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.management-table th {
+    background-color: var(--light-color);
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+.management-table tbody tr:nth-child(even) {
+    background-color: #fdfdfd;
+}
+
+.management-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.status-badge {
+    padding: 0.25rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: capitalize;
+    white-space: nowrap;
+}
+
+.status-badge.status-active,
+.status-badge.status-approved {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status-badge.status-suspended,
+.status-badge.status-removed {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.status-badge.status-pending-approval {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.management-table .btn-small {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+    margin-right: 0.3rem;
+}
+
+.management-table .btn-small:last-child {
+    margin-right: 0;
+}
+
+.action-buttons-cell {
+    /* New class for better control over action buttons layout */
+    display: flex;
+    gap: 0.3rem;
+    flex-wrap: nowrap;
+    /* Prevent wrapping within the cell initially */
+}
+
+
+/* Revenue Reports Section Specific Styles */
+.revenue-reports-section .revenue-summary-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.revenue-reports-section .revenue-card h3 {
+    font-size: 0.9rem;
+    /* Smaller title for these cards */
+}
+
+.revenue-reports-section .revenue-card .stat-number {
+    font-size: 2rem;
+    /* Slightly smaller stat number */
+}
+
+.charts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.chart-placeholder {
+    background-color: var(--light-color);
+    border: 1px dashed var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 250px;
+    /* Ensure some height */
+}
+
+.chart-placeholder h3 {
+    font-size: 1.1rem;
+    color: var(--dark-color);
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.chart-icon-placeholder {
+    color: var(--secondary-color);
+    opacity: 0.5;
+    margin-bottom: 1rem;
+}
+
+.chart-placeholder p {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+}
+
+.download-reports-section {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.download-reports-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+}
+
+.download-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.download-buttons .btn-secondary {
+    /* Using secondary style for download buttons */
+    background-color: var(--secondary-color);
+    color: #fff;
+    border-color: var(--secondary-color);
+}
+
+.download-buttons .btn-secondary:hover {
+    background-color: #545b62;
+    border-color: #545b62;
+}
+
+
+/* Buttons (can be common) */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: center;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    border: 1px solid transparent;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-color-dark);
+    border-color: var(--primary-color-dark);
+}
+
+.btn-secondary {
+    background-color: var(--card-bg);
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--secondary-color);
+    color: #fff;
+    border-color: var(--secondary-color);
+}
+
+.btn-success {
+    background-color: var(--success-color);
+    border-color: var(--success-color);
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #1e7e34;
+    border-color: #1e7e34;
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    border-color: var(--danger-color);
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #bd2130;
+    border-color: #bd2130;
+}
+
+.btn-warning {
+    /* For suspend button */
+    background-color: var(--warning-color);
+    color: var(--dark-color);
+    border-color: var(--warning-color);
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+    border-color: #d39e00;
+}
+
+
+/* Loading State (can be common) */
+.loading-state {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+    .dashboard-sidebar.admin-sidebar {
+        width: 220px;
+    }
+
+    .dashboard-main-content.admin-main-content {
+        margin-left: 220px;
+    }
+
+    .dashboard-header h1 {
+        font-size: 1.6rem;
+    }
+
+    .management-table {
+        font-size: 0.85rem;
+        /* Smaller font for table on medium screens */
+    }
+
+    .management-table th,
+    .management-table td {
+        padding: 0.6rem 0.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-dashboard-page {
+        flex-direction: column;
+    }
+
+    .dashboard-sidebar.admin-sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+        box-shadow: none;
+        border-bottom: 1px solid #46627f;
+        padding: 1rem 0;
+        /* Adjust padding for horizontal layout */
+        overflow-y: visible;
+    }
+
+    .sidebar-header {
+        flex-direction: row;
+        align-items: center;
+        text-align: left;
+        gap: 1rem;
+        padding: 0 1rem 0.5rem 1rem;
+        margin-bottom: 0.5rem;
+        border-bottom: none;
+    }
+
+    .user-avatar.admin-avatar {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 0;
+    }
+
+    .sidebar-header h3 {
+        font-size: 1rem;
+    }
+
+    .user-email-sidebar {
+        display: none;
+    }
+
+    .sidebar-nav ul {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 0 1rem 0.5rem 1rem;
+        /* Add padding for scrollable nav */
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .sidebar-nav li {
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+
+    .sidebar-nav li a {
+        padding: 0.7rem 1rem;
+        margin-bottom: 0;
+        margin-right: 0.5rem;
+        border-left: none;
+        /* Remove left border for horizontal nav */
+        border-bottom: 3px solid transparent;
+        /* Use bottom border for active state */
+        border-radius: var(--border-radius) var(--border-radius) 0 0;
+        /* Rounded top corners */
+    }
+
+    .sidebar-nav li a:hover {
+        border-left-color: transparent;
+        /* Keep transparent */
+        border-bottom-color: var(--primary-color-dark);
+    }
+
+    .sidebar-nav li.active a {
+        border-left-color: transparent;
+        border-bottom-color: var(--light-color);
+        /* Bright indicator */
+    }
+
+    .sidebar-footer {
+        display: none;
+    }
+
+    .dashboard-main-content.admin-main-content {
+        margin-left: 0;
+        padding: 1.5rem;
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .management-table {
+        /* Make table scrollable on small screens */
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .revenue-reports-section .revenue-summary-cards,
+    .charts-container {
+        grid-template-columns: 1fr;
+        /* Stack cards and charts on smaller screens */
+    }
+
+    .action-buttons-cell {
+        flex-wrap: wrap;
+        /* Allow action buttons to wrap on smaller table views */
+    }
+}
+
+@media (max-width: 480px) {
+    .overview-grid.admin-overview-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-section {
+        padding: 1rem 1.2rem;
+    }
+
+    .dashboard-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .download-buttons {
+        flex-direction: column;
+    }
+
+    .download-buttons .btn {
+        width: 100%;
+    }
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+.btn {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+.navId{
+    color: white;
+}
+
+
+.lp-btn-primary {
+    background-color: var(--primary-color);
+    color: #fff; /* This should make the text white */
+    border-color: var(--primary-color);
+}
+.lp-main-nav.lp-LandingNav a:not(.lp-btn),
+.lp-main-nav.lp-LandingNav .lp-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 1rem;
+    margin: 0;
+    box-sizing: border-box;
+}
+/* Ensure button text color is white in mobile menu */
+@media (max-width: 992px) {
+    .lp-main-nav.lp-LandingNav.active .lp-btn-primary {
+        color: #fff; /* Explicitly set white text for primary buttons in active mobile nav */
+    }
+
+    /* If you have secondary buttons in the nav and they also lose color, add: */
+    .lp-main-nav.lp-LandingNav.active .lp-btn-secondary {
+        color: #fff; /* Assuming you want white text for secondary buttons too */
+    }
+}
