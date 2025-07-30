@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from "axios"
-// Simple Icon component (can be reused or replaced with a proper icon library)
+// Simple Icon component (can be reused or replaced with a proper icon library)dd
 const Icon = ({ name, size = 20, className = "" }) => ( // Added className prop
     <svg
         xmlns="http://www.w3.org/2000/svg"
